@@ -1,0 +1,21 @@
+<!--- This is the layout file that will be used to render the content of the other files. --->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+        <title>Stock dashboard - {{title}} </title>
+    {% else %}
+        <title>Stock dashboard</title>
+    {% endif %}
+</head>
+<body>
+    {% block content %}
+    
+    <p>Default content layout. you are in layout. Here you wont find anything</p>
+    
+    {% endblock %}
+</body>
+</html>

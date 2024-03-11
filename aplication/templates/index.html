@@ -1,0 +1,47 @@
+<!--Copies layout templates to avoid using the same scripts over and over-->
+{% extends 'layout.html' %}
+<!--Everything inside this block will be insertend in the block defined in layout.html-->
+{% block content %}
+    <h1>Stock dashboard</h1>
+    <form  method="post">
+        <input type="text" name="symbol" placeholder="Search for a stock">
+        <input type="submit" value="Search"><input type="submit" value="Clear">
+    </form>
+    <table class="stockTable" >
+        <tr>
+            <th>
+                Ticker
+            </th>
+            <th>
+                Company Name
+            </th>
+            <th>
+                More info
+            </th>
+            <th>
+                Historical data
+            </th>
+        </tr>
+        <tbody
+            {% for row in table.iterrows() %}
+                <tr>
+                    <td>
+                        {{ row[1]['symbol']}}
+                    </td>
+                    <td>
+                        {{ row[1]['security']}}
+                    </td>
+                    <td>
+                        <a href="/stock/{{ row[1]['symbol'] }}">+</a>
+
+                    </td>
+                    <td>
+                        <a href="/prices/{{ row[1]['symbol'] }}">Prices</a>
+
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock %}
