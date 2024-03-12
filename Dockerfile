@@ -9,18 +9,18 @@ WORKDIR /app
 
 # Clone the OpenCV repository
 RUN git clone https://github.com/marianosin/stocksFlaskAPI.git
-
+RUN git checkout test_deployment
 # Set the working directory
 WORKDIR /app/stocksFlaskAPI
 
 # Install the required packages
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-
+EXPOSE 5000
 # Expose the port
 
 
 # Create the database
 RUN python main.py
 
-CMD [ "python", '-m', 'flask', 'run', '--host=0.0.0' ]
+CMD python ./app.py
