@@ -4,23 +4,17 @@ FROM python:3.12
 
 
 # set the working directory
-
 WORKDIR /app
 
-# Clone the OpenCV repository
-RUN git clone https://github.com/marianosin/stocksFlaskAPI.git
-RUN git checkout test_deployment
-# Set the working directory
-WORKDIR /app/stocksFlaskAPI
+# Clone the repository and checkout the branch
+RUN git clone -b test_deployment https://github.com/marianosin/stocksFlaskAPI.git /app
 
 # Install the required packages
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install -r /app/requirements.txt
 EXPOSE 5000
-# Expose the port
-
 
 # Create the database
-RUN python main.py
+RUN python /app/main.py
 
-CMD python ./app.py
+CMD python /app/app.py
